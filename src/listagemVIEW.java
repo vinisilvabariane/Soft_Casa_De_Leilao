@@ -8,7 +8,6 @@ public class listagemVIEW extends javax.swing.JFrame {
         listarProdutos();
     }
 
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
