@@ -1,33 +1,31 @@
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import java.net.URLEncoder;
+import java.sql.SQLException;
 
 
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
-/**
- *
- * @author Adm
- */
 public class conectaDAO {
     
-    public Connection connectDB(){
+    public Connection connectDB() {
         Connection conn = null;
+        String password = "@C3ss0!2#4%6";
+        String databaseName = "loja"; // Nome do banco de dados
         
         try {
-        
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/uc11?user=root&password=");
-            
-        } catch (SQLException erro){
-            JOptionPane.showMessageDialog(null, "Erro ConectaDAO" + erro.getMessage());
+            String encodedPassword = URLEncoder.encode(password, "UTF-8");
+            String url = "jdbc:mysql://localhost/" + databaseName + "?user=root&password=" + encodedPassword + "&useSSL=false";
+            conn = DriverManager.getConnection(url);
+        } catch (SQLException | UnsupportedEncodingException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ConectaDAO: " + e.getMessage());
         }
+        
         return conn;
     }
-    
 }
+
